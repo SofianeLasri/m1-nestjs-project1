@@ -5,3 +5,10 @@ export type ApiInformation = {
   apiDescription: string;
   apiDocumentation: string;
 };
+
+export type Task = {
+  id: number;
+  title: string;
+  description: string;
+  done: boolean;
+};

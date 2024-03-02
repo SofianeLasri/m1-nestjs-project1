@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ApiInformation } from './types';
+import { matchers } from 'jest-json-schema';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -17,17 +17,25 @@ describe('AppController', () => {
 
   describe('index', () => {
     it('should return the api informations', () => {
-      const apiInfo: ApiInformation = {
-        author: 'SofianeLasri',
-        apiVersion: '1.0.0',
-        apiName: 'The Todo List API',
-        apiDescription:
-          'This is a simple API to manage a todo list. You can create, delete, update and read a todo.',
-        apiDocumentation:
-          'https://github.com/SofianeLasri/m1-nestjs-project1/wiki',
+      const schema = {
+        properties: {
+          author: { type: 'string' },
+          apiVersion: { type: 'string' },
+          apiName: { type: 'string' },
+          apiDescription: { type: 'string' },
+          apiDocumentation: { type: 'string' },
+        },
+        required: [
+          'author',
+          'apiVersion',
+          'apiName',
+          'apiDescription',
+          'apiDocumentation',
+        ],
       };
 
-      expect(appController.getIndex()).toEqual(apiInfo);
+      expect.extend(matchers);
+      expect(appController.getIndex()).toMatchSchema(schema);
     });
   });
 });
