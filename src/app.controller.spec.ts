@@ -6,7 +6,7 @@ import { matchers } from 'jest-json-schema';
 describe('AppController', () => {
   let appController: AppController;
 
-  beforeEach(async () => {
+  beforeEach(async (): Promise<void> => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
       providers: [AppService],
@@ -15,7 +15,7 @@ describe('AppController', () => {
     appController = app.get<AppController>(AppController);
   });
 
-  describe('index', () => {
+  describe('index', (): void => {
     it('should return the api informations', () => {
       const schema = {
         properties: {

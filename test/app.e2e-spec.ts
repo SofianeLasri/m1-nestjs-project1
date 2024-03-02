@@ -7,7 +7,7 @@ import { matchers } from 'jest-json-schema';
 describe('AppController (e2e)', () => {
   let app: INestApplication;
 
-  beforeEach(async () => {
+  beforeEach(async (): Promise<void> => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
