@@ -14,3 +14,10 @@ export type Task = {
   createdAt: Date;
   updatedAt: Date;
 };
+
+export type User = {
+  id: number;
+  username: string;
+  bearerToken: string;
+  createdAt: Date;
+};
