@@ -1,4 +1,11 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+} from '@nestjs/common';
 import { TaskService } from './task.service';
 import { Task } from '../types';
 import { CreateTaskDto, UpdateTaskDto } from './task.dto';
@@ -13,7 +20,7 @@ export class TaskController {
   }
 
   @Get(':id')
-  getTask(id: number): Task {
+  getTask(@Param('id', new ParseIntPipe()) id: number): Task {
     return this.taskService.getTask(id);
   }
 

@@ -53,4 +53,9 @@ export class UserService {
 
     return newUser;
   }
+
+  getUserByBearerToken(bearerToken: string) {
+    const users = this.readUsers();
+    return users.find((user) => user.bearerToken === bearerToken);
+  }
 }

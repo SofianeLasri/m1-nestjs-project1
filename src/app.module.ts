@@ -7,6 +7,7 @@ import { LoggerMiddleware } from './logger.middleware';
 import { TaskController } from './task/task.controller';
 import { UserController } from './user/user.controller';
 import { UserModule } from './user/user.module';
+import { AuthMiddleware } from './auth.middleware';
 
 @Module({
   imports: [ConfigurationModule, TaskModule, UserModule],
@@ -18,5 +19,6 @@ export class AppModule implements NestModule {
     consumer
       .apply(LoggerMiddleware)
       .forRoutes(AppController, TaskController, UserController);
+    consumer.apply(AuthMiddleware).forRoutes(TaskController);
   }
 }

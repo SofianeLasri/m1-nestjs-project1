@@ -19,7 +19,7 @@ describe('AppController (e2e)', () => {
   it('/ (GET)', () => {
     expect.extend(matchers);
     return request(app.getHttpServer())
-      .get('/tasks')
+      .get('/')
       .expect(200)
       .expect('Content-Type', /json/);
   });
